@@ -1,11 +1,17 @@
 var gulp = require('gulp');
 var rename = require('gulp-rename');
+var sass = require('gulp-sass');
 
-function copy(done) {
+function css_style(done) {
     gulp.src('./scss/style.scss')
-        .pipe(rename('main.css'))
+        .pipe(sass({
+            errLogToConsole: true,
+            outputStyle: 'compressed'
+        }))
+        .on('error', console.error.bind(console))
+        .pipe(rename({suffix: '.min'}))
         .pipe(gulp.dest('./css/'))
     done()
 }
 
-gulp.task(copy)
+gulp.task(css_style)
