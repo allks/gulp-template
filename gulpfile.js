@@ -5,7 +5,7 @@ var autoprefixer = require('gulp-autoprefixer');
 var sourcemaps = require('gulp-sourcemaps');
 
 function css_style(done) {
-    gulp.src('./scss/style.scss')
+    gulp.src('./scss/**/*.scss')
         .pipe(sourcemaps.init())
         .pipe(sass({
             errLogToConsole: true,
@@ -21,4 +21,8 @@ function css_style(done) {
     done()
 }
 
-gulp.task(css_style)
+function watchSass() {
+    gulp.watch('./scss/**/*', css_style)
+}
+
+gulp.task('default', gulp.series(watchSass))
