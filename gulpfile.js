@@ -8,7 +8,7 @@ var browserSync = require('browser-sync').create();
 
 function pug_html(done) {
     gulp.src('./pug/**/*.pug')
-        .pipe(pug())
+        .pipe(pug({pretty: true}))
         .pipe(gulp.dest('./'))
         .pipe(browserSync.stream())
     done()
@@ -19,13 +19,13 @@ function css_style(done) {
         .pipe(sourcemaps.init())
         .pipe(sass({
             errLogToConsole: true,
-            outputStyle: 'compressed'
+            // outputStyle: 'compressed'
         }))
         .on('error', console.error.bind(console))
         .pipe(autoprefixer({
             cascade: false
         }))
-        .pipe(rename({suffix: '.min'}))
+        .pipe(rename('style.css'))
         .pipe(sourcemaps.write('./'))
         .pipe(gulp.dest('./css/'))
         .pipe(browserSync.stream())
