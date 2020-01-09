@@ -1,10 +1,10 @@
-var gulp = require('gulp');
-var rename = require('gulp-rename');
-var pug = require('gulp-pug');
-var sass = require('gulp-sass');
-var autoprefixer = require('gulp-autoprefixer');
-var sourcemaps = require('gulp-sourcemaps');
-var browserSync = require('browser-sync').create();
+var gulp = require('gulp'),
+    rename = require('gulp-rename'),
+    pug = require('gulp-pug'),
+    sass = require('gulp-sass'),
+    autoprefixer = require('gulp-autoprefixer'),
+    sourcemaps = require('gulp-sourcemaps'),
+    browserSync = require('browser-sync').create(),
 
 function pug_html(done) {
     gulp.src('./pug/**/*.pug')
@@ -46,10 +46,10 @@ function browserReload(done) {
 }
 
 function watchFile() {
-    gulp.watch('./pug/**/*', pug_html);
-    gulp.watch('./scss/**/*', css_style);
+    gulp.watch('./pug/**/*.pug', pug_html);
+    gulp.watch('./scss/**/*.scss', css_style);
     gulp.watch('./**/*.html', browserReload);
     gulp.watch('./**/*.js', browserReload);
 }
 
-gulp.task('default', gulp.parallel(watchFile, sync))
+gulp.task('default', gulp.parallel(sync, watchFile))
