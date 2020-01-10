@@ -4,7 +4,7 @@ var gulp = require('gulp'),
     sass = require('gulp-sass'),
     autoprefixer = require('gulp-autoprefixer'),
     sourcemaps = require('gulp-sourcemaps'),
-    browserSync = require('browser-sync').create(),
+    browserSync = require('browser-sync').create();
 
 function pug_html(done) {
     gulp.src('./pug/**/*.pug')
